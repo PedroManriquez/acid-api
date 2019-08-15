@@ -1,9 +1,11 @@
-var express = require('express')
-var router = express.Router()
+const express = require('express')
+const router = express.Router()
+const WeatherController = require('../app/controllers/Weather.controller')
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' })
-})
+let weather_controller = new WeatherController()
+
+router
+  .get('/', (request, response, a) => response.render('index', { title: 'Express' }))
+  .get('/cities', weather_controller.index)
 
 module.exports = router
